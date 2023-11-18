@@ -13,10 +13,10 @@ import BgImage from "../../assets/img/illustrations/signin.svg";
 export default () => {
   return (
     <main>
-      <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+      <section className="d-flex align-items-center my-3 mt-lg-4 mb-lg-5">
         <Container>
           <p className="text-center">
-            <Card.Link as={Link} to={Routes.DashboardOverview.path} className="text-gray-700">
+            <Card.Link as={Link} to={Routes.Presentation.path} className="text-gray-700">
               <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to homepage
             </Card.Link>
           </p>
@@ -30,27 +30,30 @@ export default () => {
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
-                      <InputGroup.Text>
-                        <FontAwesomeIcon icon={faEnvelope} />
-                      </InputGroup.Text>
                       <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                    </InputGroup>
+                  </Form.Group>
+                  <Form.Group id="name" className="mb-4">
+                    <Form.Label>First Name</Form.Label>
+                    <InputGroup>
+                      <Form.Control autoFocus required type="name" placeholder="John" />
+                    </InputGroup>
+                  </Form.Group>
+                  <Form.Group id="surname" className="mb-4">
+                    <Form.Label>Last Name</Form.Label>
+                    <InputGroup>
+                      <Form.Control autoFocus required type="surname" placeholder="Smitannick" />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="password" className="mb-4">
                     <Form.Label>Your Password</Form.Label>
                     <InputGroup>
-                      <InputGroup.Text>
-                        <FontAwesomeIcon icon={faUnlockAlt} />
-                      </InputGroup.Text>
                       <Form.Control required type="password" placeholder="Password" />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="confirmPassword" className="mb-4">
                     <Form.Label>Confirm Password</Form.Label>
                     <InputGroup>
-                      <InputGroup.Text>
-                        <FontAwesomeIcon icon={faUnlockAlt} />
-                      </InputGroup.Text>
                       <Form.Control required type="password" placeholder="Confirm Password" />
                     </InputGroup>
                   </Form.Group>
@@ -60,7 +63,6 @@ export default () => {
                       I agree to the <Card.Link>terms and conditions</Card.Link>
                     </FormCheck.Label>
                   </FormCheck>
-
                   <Button variant="primary" type="submit" className="w-100">
                     Sign up
                   </Button>
