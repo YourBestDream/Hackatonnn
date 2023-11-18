@@ -4,7 +4,7 @@ import SimpleBar from 'simplebar-react';
 import { useLocation } from "react-router-dom";
 import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxOpen, faChartPie, faFileAlt, faHandHoldingUsd, faSignOutAlt, faTable, faTimes, faRocket } from "@fortawesome/free-solid-svg-icons";
+import { faChartPie, faSignOutAlt, faTimes, faRocket, faCog, faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -99,25 +99,19 @@ export default () => {
             <Nav className="flex-column pt-3 pt-md-0">
               <NavItem title="Connect Moldova" link={Routes.Presentation.path} image={ReactHero} />
 
-              <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
+              <NavItem title="Meetings" link={Routes.DashboardOverview.path} icon={faChartPie} />
 
-              <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
-                <NavItem title="Bootstrap Table" link={Routes.BootstrapTables.path} />
-              </CollapsableNavItem>
+              <NavItem title="Settings" link={Routes.Settings.path} icon={faCog} />
 
-              <CollapsableNavItem eventKey="examples/" title="Page Examples" icon={faFileAlt}>
-                <NavItem title="Sign In" link={Routes.Signin.path} />
-                <NavItem title="Sign Up" link={Routes.Signup.path} />
-                <NavItem title="Forgot password" link={Routes.ForgotPassword.path} />
-                <NavItem title="Reset password" link={Routes.ResetPassword.path} />
-                <NavItem title="Lock" link={Routes.Lock.path} />
-              </CollapsableNavItem>
-
+              <NavItem title="Support" link={Routes.Presentation.path} icon={faUserShield} />
 
               <Dropdown.Divider className="my-3 border-indigo" />
+              <NavItem title="Logout" link={Routes.Presentation.path} icon={faSignOutAlt} />
+
+
 
               {/*buuton for idk*/}
-              <NavItem external title="cacaitaHuineaImportanta" link="https://pornhub.com" target="_blank" image={ThemesbergLogo} />
+              <NavItem external title="cacaitaHuineaImportanta" link="https://pornhub.com/" target="_blank" image={ThemesbergLogo} />
               <Button as={Link} to={null} variant="secondary" className="upgrade-to-pro"><FontAwesomeIcon icon={faRocket} className="me-1" /> Upgrade to kiberpp</Button>
             </Nav>
           </div>
