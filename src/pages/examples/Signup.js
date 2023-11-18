@@ -1,16 +1,44 @@
-
 import React from "react";
+import {useMutation, useState} from 'react-query';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
+import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup, Toast} from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
+import DashboardOverview from "./dashboard/DashboardOverview";
 
+import {auth} from './api'
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
-
-
 export default () => {
+  const history = useHistory();
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showFailedToast, setShowFailedToast] = useState(false);
+
+  const signUpMutation = useMutation((formData) => auth.signUp(formData), {
+    onSuccess: () => {
+      history.push(Routes.DashboardOverview.path);
+      setShowSuccessToast(true);
+    },
+    onError: () => {
+      setShowFailedToast(true);
+    },
+  });
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+
+    // Call the mutate function to trigger the signup mutation
+    signUpMutation.mutate({
+      email,
+      password,
+      firstName,
+      lastName,
+      phone,
+    });
+  };
+
   return (
     <main>
       <section className="d-flex align-items-center my-3 mt-lg-4 mb-lg-5">
@@ -63,8 +91,8 @@ export default () => {
                       I agree to the <Card.Link>terms and conditions</Card.Link>
                     </FormCheck.Label>
                   </FormCheck>
-                  <Button variant="primary" type="submit" className="w-100">
-                    Sign up
+                  <Button variant="primary" type="submit" className="w-100" disabled={isSignUpDisabled()}>
+                    {signUpMutation.isLoading ? 'Signing up...' : 'Sign up'}
                   </Button>
                 </Form>
 
@@ -92,6 +120,40 @@ export default () => {
           </Row>
         </Container>
       </section>
+      <Toast
+          show={showSuccessToast}
+          onClose={() => setShowSuccessToast(false)}
+          style={{
+            position: 'fixed',
+            bottom: 16,
+            right: 16,
+          }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">Failed</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Failed to sign up
+        </Toast.Body>
+      </Toast>
+
+      <Toast
+          show={showFailedToast}
+          onClose={() => setShowFailedToast(false)}
+          style={{
+            position: 'fixed',
+            bottom: 16,
+            right: 16,
+          }}
+      >
+        <Toast.Header>
+          <strong className="me-auto">Failed</strong>
+        </Toast.Header>
+        <Toast.Body>
+          Failed to sign up
+        </Toast.Body>
+      </Toast>
+
     </main>
   );
 };

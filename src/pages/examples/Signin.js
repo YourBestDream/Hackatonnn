@@ -9,8 +9,36 @@ import { Link } from 'react-router-dom';
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 
+import {auth} from './api'
+import {useMutation, useState} from 'react-query';
+import { useHistory } from 'react-router-dom';
 
 export default () => {
+  const history = useHistory();
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [showFailedToast, setShowFailedToast] = useState(false);
+
+  const signInMutation = useMutation((formData) => auth.signIn(formData), {
+    onSuccess: () => {
+      history.push(Routes.DashboardOverview.path);
+      setShowSuccessToast(true);
+    },
+    onError: () => {
+      setShowFailedToast(true);
+    },
+  });
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    signInMutation.mutate({
+      email,
+      password,
+    });
+  };
+
+
+
   return (
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
