@@ -3,9 +3,7 @@ export const Routes = {
     // pages
     Presentation: { path: "/" },
     DashboardOverview: { path: "/dashboard/overview" },
-    Transactions: { path: "/transactions" },
     Settings: { path: "/settings" },
-    Upgrade: { path: "/upgrade" },
     BootstrapTables: { path: "/tables/bootstrap-tables" },
     Billing: { path: "/examples/billing" },
     Invoice: { path: "/examples/invoice" },
@@ -16,12 +14,6 @@ export const Routes = {
     Lock: { path: "/examples/lock" },
     NotFound: { path: "/examples/404" },
     ServerError: { path: "/examples/500" },
-
-    // docs
-    DocsQuickStart: { path: "/documentation/quick-start" },
-    DocsFolderStructure: { path: "/documentation/folder-structure" },
-    DocsBuild: { path: "/documentation/build-tools" },
-    DocsChangelog: { path: "/documentation/changelog" },
 
     // components
     Accordions: { path: "/components/accordions" },

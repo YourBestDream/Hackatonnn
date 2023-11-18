@@ -77,7 +77,7 @@ export default () => {
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
           <Dropdown className="btn-toolbar">
             <Dropdown.Toggle as={Button} variant="primary" size="sm" className="me-2">
-              <FontAwesomeIcon icon={faPlus} className="me-2" />New Task
+              <FontAwesomeIcon icon={faPlus} className="me-2" />New Question
             </Dropdown.Toggle>
             <Dropdown.Menu className="dashboard-dropdown dropdown-menu-left mt-2">
               <Dropdown.Item className="fw-bold">
@@ -98,13 +98,6 @@ export default () => {
         </div>
 
         <Row className="justify-content-md-center">
-          <Col xs={12} className="mb-4 d-none d-sm-block">
-            <SalesValueWidget
-                title="Sales Value"
-                value="10,567"
-                percentage={10.57}
-            />
-          </Col>
           <p>
             questions
           </p>
@@ -132,10 +125,19 @@ export default () => {
               nextIcon={null}
               prevIcon={null}
               fade={true}
+              interval={null}
           >
             {generateMeetingsCards()}
           </Carousel>
         </Row>
+
+        <Col xs={12} className="mb-4 d-none d-sm-block">
+          <SalesValueWidget
+              title="Sales Value"
+              value="10,567"
+              percentage={10.57}
+          />
+        </Col>
 
         <Row>
           <Col xs={12} xl={12} className="mb-4">

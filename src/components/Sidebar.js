@@ -97,10 +97,9 @@ export default () => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Volt React" link={Routes.Presentation.path} image={ReactHero} />
+              <NavItem title="Connect Moldova" link={Routes.Presentation.path} image={ReactHero} />
 
               <NavItem title="Overview" link={Routes.DashboardOverview.path} icon={faChartPie} />
-              <NavItem title="Transactions" icon={faHandHoldingUsd} link={Routes.Transactions.path} />
 
               <CollapsableNavItem eventKey="tables/" title="Tables" icon={faTable}>
                 <NavItem title="Bootstrap Table" link={Routes.BootstrapTables.path} />
@@ -116,27 +115,10 @@ export default () => {
 
 
               <Dropdown.Divider className="my-3 border-indigo" />
-              <CollapsableNavItem eventKey="components/" title="Components" icon={faBoxOpen}>
-                <NavItem title="Accordion" link={Routes.Accordions.path} />
-                <NavItem title="Alerts" link={Routes.Alerts.path} />
-                <NavItem title="Badges" link={Routes.Badges.path} />
-                <NavItem title="Breadcrumbs" link={Routes.Breadcrumbs.path} />
-                <NavItem title="Buttons" link={Routes.Buttons.path} />
-                <NavItem title="Forms" link={Routes.Forms.path} />
-                <NavItem title="Modals" link={Routes.Modals.path} />
-                <NavItem title="Navbars" link={Routes.Navbars.path} />
-                <NavItem title="Navs" link={Routes.Navs.path} />
-                <NavItem title="Pagination" link={Routes.Pagination.path} />
-                <NavItem title="Popovers" link={Routes.Popovers.path} />
-                <NavItem title="Progress" link={Routes.Progress.path} />
-                <NavItem title="Tables" link={Routes.Tables.path} />
-                <NavItem title="Tabs" link={Routes.Tabs.path} />
-                <NavItem title="Toasts" link={Routes.Toasts.path} />
-                <NavItem title="Tooltips" link={Routes.Tooltips.path} />
-              </CollapsableNavItem>
+
               {/*buuton for idk*/}
               <NavItem external title="cacaitaHuineaImportanta" link="https://pornhub.com" target="_blank" image={ThemesbergLogo} />
-              <Button as={Link} to={Routes.Upgrade.path} variant="secondary" className="upgrade-to-pro"><FontAwesomeIcon icon={faRocket} className="me-1" /> Upgrade to kiberpp</Button>
+              <Button as={Link} to={null} variant="secondary" className="upgrade-to-pro"><FontAwesomeIcon icon={faRocket} className="me-1" /> Upgrade to kiberpp</Button>
             </Nav>
           </div>
         </SimpleBar>
