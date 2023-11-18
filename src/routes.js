@@ -18,10 +18,7 @@ export const Routes = {
     ServerError: { path: "/examples/500" },
 
     // docs
-    DocsOverview: { path: "/documentation/overview" },
-    DocsDownload: { path: "/documentation/download" },
     DocsQuickStart: { path: "/documentation/quick-start" },
-    DocsLicense: { path: "/documentation/license" },
     DocsFolderStructure: { path: "/documentation/folder-structure" },
     DocsBuild: { path: "/documentation/build-tools" },
     DocsChangelog: { path: "/documentation/changelog" },
@@ -30,7 +27,6 @@ export const Routes = {
     Accordions: { path: "/components/accordions" },
     Alerts: { path: "/components/alerts" },
     Badges: { path: "/components/badges" },
-    Widgets: { path: "/widgets" },
     Breadcrumbs: { path: "/components/breadcrumbs" },
     Buttons: { path: "/components/buttons" },
     Forms: { path: "/components/forms" },
