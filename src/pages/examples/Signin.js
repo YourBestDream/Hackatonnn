@@ -30,9 +30,6 @@ export default () => {
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
-                      <InputGroup.Text>
-                        <FontAwesomeIcon icon={faEnvelope} />
-                      </InputGroup.Text>
                       <Form.Control autoFocus required type="email" placeholder="example@company.com" />
                     </InputGroup>
                   </Form.Group>
@@ -40,9 +37,6 @@ export default () => {
                     <Form.Group id="password" className="mb-4">
                       <Form.Label>Your Password</Form.Label>
                       <InputGroup>
-                        <InputGroup.Text>
-                          <FontAwesomeIcon icon={faUnlockAlt} />
-                        </InputGroup.Text>
                         <Form.Control required type="password" placeholder="Password" />
                       </InputGroup>
                     </Form.Group>
