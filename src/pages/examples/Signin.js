@@ -1,22 +1,23 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from '@themesberg/react-bootstrap';
 import { Link } from 'react-router-dom';
-
 import { Routes } from "../../routes";
 import BgImage from "../../assets/img/illustrations/signin.svg";
 
 
 export default () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <main>
       <section className="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
         <Container>
           <p className="text-center">
-            <Card.Link as={Link} to={Routes.DashboardOverview.path} className="text-gray-700">
+            <Card.Link as={Link} to={Routes.Presentation.path} className="text-gray-700">
               <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to homepage
             </Card.Link>
           </p>
@@ -30,14 +31,14 @@ export default () => {
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                      <Form.Control autoFocus required type="email" placeholder="example@company.com" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group>
                     <Form.Group id="password" className="mb-4">
                       <Form.Label>Your Password</Form.Label>
                       <InputGroup>
-                        <Form.Control required type="password" placeholder="Password" />
+                        <Form.Control required type="password" placeholder="Password" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
                       </InputGroup>
                     </Form.Group>
                     <div className="d-flex justify-content-between align-items-center mb-4">
@@ -48,7 +49,7 @@ export default () => {
                       <Card.Link className="small text-end">Lost password?</Card.Link>
                     </div>
                   </Form.Group>
-                  <Button variant="primary" type="submit" className="w-100">
+                  <Button variant="primary" type="submit" className="w-100" disabled = {!email || !password}>
                     Sign in
                   </Button>
                 </Form>

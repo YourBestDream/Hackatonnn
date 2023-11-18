@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faEnvelope, faUnlockAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -11,6 +11,12 @@ import BgImage from "../../assets/img/illustrations/signin.svg";
 
 
 export default () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [terms, setTerms] = useState(false);
   return (
     <main>
       <section className="d-flex align-items-center my-3 mt-lg-4 mb-lg-5">
@@ -30,42 +36,54 @@ export default () => {
                   <Form.Group id="name" className="mb-4">
                     <Form.Label>First Name</Form.Label>
                     <InputGroup>
-                      <Form.Control autoFocus required type="text" placeholder="John" />
+                      <Form.Control autoFocus required type="text" placeholder="John" value = {name} onChange = {(e)=>(setName(e.target.value))}/>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="surname" className="mb-4">
                     <Form.Label>Last Name</Form.Label>
                     <InputGroup>
-                      <Form.Control autoFocus required type="text" placeholder="Smitannick" />
+                      <Form.Control autoFocus required type="text" placeholder="Smitannick" value = {surname} onChange = {(e)=>(setSurname(e.target.value))}/>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="email" className="mb-4">
                     <Form.Label>Your Email</Form.Label>
                     <InputGroup>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
+                      <Form.Control autoFocus required type="email" placeholder="example@company.com" value = {email} onChange = {(e)=>(setEmail(e.target.value))}/>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="password" className="mb-4">
                     <Form.Label>Your Password</Form.Label>
                     <InputGroup>
-                      <Form.Control required type="password" placeholder="Password" />
+                      <Form.Control required type="password" placeholder="Password" value = {password} onChange = {(e)=>(setPassword(e.target.value))}/>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="confirmPassword" className="mb-4">
                     <Form.Label>Confirm Password</Form.Label>
                     <InputGroup>
-                      <Form.Control required type="password" placeholder="Confirm Password" />
+                      <Form.Control required type="password" placeholder="Confirm Password" value = {confirmPassword} onChange = {(e)=>(setConfirmPassword(e.target.value))}/>
                     </InputGroup>
                   </Form.Group>
                   <FormCheck type="checkbox" className="d-flex mb-4">
-                    <FormCheck.Input required id="terms" className="me-2" />
+                    <FormCheck.Input 
+                      required 
+                      id="terms" 
+                      className="me-2" 
+                      checked={terms} 
+                      onChange={(e) => setTerms(e.target.checked)} 
+                    />
                     <FormCheck.Label htmlFor="terms">
                       I agree to the <Card.Link>terms and conditions</Card.Link>
                     </FormCheck.Label>
                   </FormCheck>
-                  <Button variant="primary" type="submit" className="w-100">
+                  <Button 
+                    variant="primary" 
+                    type="submit" 
+                    className="w-100" 
+                    disabled={!email || !password || !name || !surname || !confirmPassword || !terms}
+                  >
                     Sign up
                   </Button>
+
                 </Form>
 
                 <div className="mt-3 mb-4 text-center">
