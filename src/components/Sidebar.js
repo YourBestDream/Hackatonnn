@@ -13,7 +13,7 @@ import ThemesbergLogo from "../assets/img/themesberg.svg";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
-export default (props = {}) => {
+export default () => {
   const location = useLocation();
   const { pathname } = location;
   const [show, setShow] = useState(false);
