@@ -12,28 +12,36 @@ const authAxios = axios.create({
 const saveAccessToken = (token) => {
     localStorage.setItem('accessToken', token);
 };
+const saveEmail = (email) => {
+    localStorage.setItem('email', email);
+};
 
 const getAccessToken = () => {
     return localStorage.getItem('accessToken');
 };
 
 export const auth = {
-    signIn: async (email, password) => {
+    signIn: async (body) => {
         try {
-            const response = await authAxios.post('/authenticate', { email, password });
-            const { accessToken } = response.data;
+            const response = await authAxios.post('/authenticate', { ...body });
+            const { email, accessToken } = response.data;
             saveAccessToken(accessToken);
+            saveEmail(email);
             return response.data;
         } catch (error) {
             throw error;
         }
     },
 
-    signUp : async (email, password, fn, ln, phone) => {
+    signUp : async (body) => {
         try {
-            const response = await authAxios.post('/register', { email, password, fn, ln, phone });
-            const { accessToken } = response.data;
+            const response = await authAxios.post('/register', {
+                ...body,
+                phone:"068388162"
+            });
+            const { email: responseDataEmail, accessToken } = response.data;
             saveAccessToken(accessToken);
+            saveEmail(responseDataEmail);
             return response.data;
         } catch (error) {
             throw error;
