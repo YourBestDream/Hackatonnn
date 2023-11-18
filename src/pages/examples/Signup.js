@@ -27,22 +27,22 @@ export default () => {
                   <h3 className="mb-0">Create an account</h3>
                 </div>
                 <Form className="mt-4">
-                  <Form.Group id="email" className="mb-4">
-                    <Form.Label>Your Email</Form.Label>
-                    <InputGroup>
-                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
-                    </InputGroup>
-                  </Form.Group>
                   <Form.Group id="name" className="mb-4">
                     <Form.Label>First Name</Form.Label>
                     <InputGroup>
-                      <Form.Control autoFocus required type="name" placeholder="John" />
+                      <Form.Control autoFocus required type="text" placeholder="John" />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="surname" className="mb-4">
                     <Form.Label>Last Name</Form.Label>
                     <InputGroup>
-                      <Form.Control autoFocus required type="surname" placeholder="Smitannick" />
+                      <Form.Control autoFocus required type="text" placeholder="Smitannick" />
+                    </InputGroup>
+                  </Form.Group>
+                  <Form.Group id="email" className="mb-4">
+                    <Form.Label>Your Email</Form.Label>
+                    <InputGroup>
+                      <Form.Control autoFocus required type="email" placeholder="example@company.com" />
                     </InputGroup>
                   </Form.Group>
                   <Form.Group id="password" className="mb-4">
@@ -77,9 +77,6 @@ export default () => {
                   </Button>
                   <Button variant="outline-light" className="btn-icon-only btn-pill text-twitter me-2">
                     <FontAwesomeIcon icon={faTwitter} />
-                  </Button>
-                  <Button variant="outline-light" className="btn-icon-only btn-pil text-dark">
-                    <FontAwesomeIcon icon={faGithub} />
                   </Button>
                 </div>
                 <div className="d-flex justify-content-center align-items-center mt-4">
