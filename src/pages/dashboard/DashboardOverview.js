@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Col, Row, Carousel} from '@themesberg/react-bootstrap';
 import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
 import VotingTable from "../../components/VotingTable";
@@ -7,9 +7,12 @@ import {meetings} from "../../api";
 
 
 export default () => {
-const generateMeetingsCards = () => {
+    const [selectedMeetingId, setSelectedMeetingId] = useState(null);
+
+    const generateMeetingsCards = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { data: meetingsData } = useQuery([], () => meetings.listMeetings());
+
 
 
     const widgetData = meetingsData
@@ -24,6 +27,12 @@ const generateMeetingsCards = () => {
     const groupedWidgets = [];
     const totalItems = widgetData.length;
 
+    const handleMeetingClick = (meetingId) => {
+        console.log('Meeting clicked with ID:', meetingId);
+
+        setSelectedMeetingId(meetingId);
+    };
+
     const duplicatedData = [...widgetData, ...widgetData.slice(0, widgetsPerSlide)];
 
     for (let i = 0; i < totalItems; i += 1) {
@@ -35,7 +44,7 @@ const generateMeetingsCards = () => {
           <Row>
             {group.map((data, dataIndex) => (
                 <Col key={dataIndex} xs={12} sm={6} xl={4} className="mb-4">
-                  <InfoCard {...data} onClick={true}/>
+                  <InfoCard {...data} onClick={handleMeetingClick}/>
                 </Col>
             ))}
           </Row>
@@ -64,7 +73,7 @@ const generateMeetingsCards = () => {
         </Row>
         <Row>
         <Col xs={12}>
-          <VotingTable />
+          <VotingTable meetingId={selectedMeetingId}/>
         </Col>
       </Row>
 
