@@ -114,9 +114,6 @@ export default () => {
 
 
 
-              {/*buuton for idk*/}
-              <NavItem external title="cacaitaHuineaImportanta" link="https://pornhub.com/" target="_blank" image={ThemesbergLogo} />
-              <Button as={Link} to={null} variant="secondary" className="upgrade-to-pro"><FontAwesomeIcon icon={faRocket} className="me-1" /> Upgrade to kiberpp</Button>
             </Nav>
           </div>
         </SimpleBar>

@@ -18,7 +18,7 @@ const questionsAxios = axios.create({
 export const questions = {
     createQuestion: async (body) => {
         try {
-            const response = await questionsAxios.post('/', {...body}, {
+            const response = await questionsAxios.post('/create', {...body}, {
                 headers: {
                     ...questionsAxios.defaults.headers,
                     'Authorization': `Bearer ${ACCESS_TOKEN}`,
@@ -33,7 +33,7 @@ export const questions = {
 
     voteQuestion: async (questionId) => {
         try {
-            const response = await questionsAxios.post(`/${questionId}/vote`, {
+            const response = await questionsAxios.post(`/vote?questionId=${questionId}`, {
                 headers: {
                     ...questionsAxios.defaults.headers,
                     'Authorization': `Bearer ${ACCESS_TOKEN}`,
