@@ -10,9 +10,9 @@ const questionsAxios = axios.create({
 });
 
 export const questions = {
-    createQuestion: async (title, body,uid, meetingId) => {
+    createQuestion: async (body) => {
         try {
-            const response = await questionsAxios.post('/', {title, body,uid, meetingId });
+            const response = await questionsAxios.post('/', {...body});
             return response.data;
         } catch (error) {
             throw error;

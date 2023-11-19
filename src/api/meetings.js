@@ -35,9 +35,9 @@ export const meetings = {
         }
     },
 
-    createMeeting: async (title, description, officials) => {
+    createMeeting: async (body) => {
         try {
-            const response = await meetingsAxios.post('/create', { title, description, officials });
+            const response = await meetingsAxios.post('/create', { ...body });
             return response.data;
         } catch (error) {
             throw error;

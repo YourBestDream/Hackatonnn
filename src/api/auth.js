@@ -15,9 +15,18 @@ const saveAccessToken = (token) => {
 const saveEmail = (email) => {
     localStorage.setItem('email', email);
 };
+const saveRole = (role) => {
+    localStorage.setItem('role', role);
+};
 
-const getAccessToken = () => {
+export const getAccessToken = () => {
     return localStorage.getItem('accessToken');
+};
+export const getEmail = () => {
+    return localStorage.getItem('email');
+};
+export const getRole = () => {
+    return localStorage.getItem('role');
 };
 
 export const auth = {

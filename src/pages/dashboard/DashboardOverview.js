@@ -1,7 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine, faCloudUploadAlt, faPlus, faTasks, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
+import { faChartLine, faUserShield } from '@fortawesome/free-solid-svg-icons';
+import { Col, Row, Button, Carousel} from '@themesberg/react-bootstrap';
 
 import { InfoCard,TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget} from "../../components/Widgets";
 
@@ -74,28 +73,7 @@ export default () => {
   };
   return (
       <>
-        <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-          <Dropdown className="btn-toolbar">
-            <Dropdown.Toggle as={Button} variant="primary" size="sm" className="me-2">
-              <FontAwesomeIcon icon={faPlus} className="me-2" />New Question
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dashboard-dropdown dropdown-menu-left mt-2">
-              <Dropdown.Item className="fw-bold">
-                <FontAwesomeIcon icon={faTasks} className="me-2" /> New Task
-              </Dropdown.Item>
-              <Dropdown.Item className="fw-bold">
-                <FontAwesomeIcon icon={faCloudUploadAlt} className="me-2" /> Upload Files
-              </Dropdown.Item>
-              <Dropdown.Item className="fw-bold">
-                <FontAwesomeIcon icon={faUserShield} className="me-2" /> Preview Security
-              </Dropdown.Item>
 
-              <Dropdown.Divider />
-            </Dropdown.Menu>
-          </Dropdown>
-
-
-        </div>
 
         <Row className="justify-content-md-center">
           <p>
