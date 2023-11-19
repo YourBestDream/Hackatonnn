@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://your-api-base-url';
+const API_BASE_URL = 'http://localhost:8080';
 
 const meetingsAxios = axios.create({
     baseURL: `${API_BASE_URL}/meetings`,
@@ -35,9 +35,9 @@ export const meetings = {
         }
     },
 
-    createMeeting: async (title, description, officials) => {
+    createMeeting: async (body) => {
         try {
-            const response = await meetingsAxios.post('/create', { title, description, officials });
+            const response = await meetingsAxios.post('/create', { ...body });
             return response.data;
         } catch (error) {
             throw error;

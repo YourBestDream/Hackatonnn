@@ -15,17 +15,26 @@ const saveAccessToken = (token) => {
 const saveEmail = (email) => {
     localStorage.setItem('email', email);
 };
+const saveRole = (role) => {
+    localStorage.setItem('role', role);
+};
 
-const getAccessToken = () => {
+export const getAccessToken = () => {
     return localStorage.getItem('accessToken');
+};
+export const getEmail = () => {
+    return localStorage.getItem('email');
+};
+export const getRole = () => {
+    return localStorage.getItem('role');
 };
 
 export const auth = {
     signIn: async (body) => {
         try {
             const response = await authAxios.post('/authenticate', { ...body });
-            const { email, accessToken } = response.data;
-            saveAccessToken(accessToken);
+            const { email, jwt, role } = response.data;
+            saveAccessToken(jwt);
             saveEmail(email);
             return response.data;
         } catch (error) {
@@ -39,8 +48,8 @@ export const auth = {
                 ...body,
                 phone:"068388162"
             });
-            const { email: responseDataEmail, accessToken } = response.data;
-            saveAccessToken(accessToken);
+            const { email: responseDataEmail, jwt,role } = response.data;
+            saveAccessToken(jwt);
             saveEmail(responseDataEmail);
             return response.data;
         } catch (error) {
