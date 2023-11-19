@@ -39,12 +39,30 @@ export const GeneralInfoForm = ({role}) => {
             </Col>
             </Row>
             {role === 'official' ? (
+                <Col>
+
                 <Row>
+                  <Col md={6} className="mb-3">
                   <Form.Group>
                     <Form.Label>Position</Form.Label>
                     <Form.Control required type="text" placeholder="Enter your Position" />
                   </Form.Group>
+                  </Col>
+                  <Col md={6} className="mb-3">
+                    <Form.Group>
+                      <Form.Label>Work Place</Form.Label>
+                      <Form.Control required type="text" placeholder="Enter your Work PLace" />
+                    </Form.Group>
+                  </Col>
                 </Row>
+                <Row>
+                  <Form.Group>
+                    <Form.Label>Bio</Form.Label>
+                    <Form.Control required type="text" placeholder="Enter your Bio" />
+                  </Form.Group>
+                </Row>
+
+                </Col>
             ) : null}
           </Row>
 
