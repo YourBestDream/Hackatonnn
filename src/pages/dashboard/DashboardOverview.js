@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine,faPlus} from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
 import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
-import ModalQuestions from "../../components/ModalQuestions";
-
+import VotingTable from "../../components/VotingTable";
 
 
 export default () => {
@@ -93,7 +92,11 @@ const generateMeetingsCards = () => {
             {generateMeetingsCards()}
           </Carousel>
         </Row>
-
+        <Row>
+        <Col xs={12}>
+          <VotingTable />
+        </Col>
+      </Row>
         <Col xs={12} className="mb-4 d-none d-sm-block">
           <SalesValueWidget
               title="Sales Value"
