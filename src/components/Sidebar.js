@@ -44,6 +44,10 @@ export default () => {
     );
   };
 
+  const handleLogOut = () => {
+    localStorage.clear();
+  }
+
   const NavItem = (props) => {
     const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
     const classNames = badgeText ? "d-flex justify-content-start align-items-center justify-content-between" : "";
@@ -106,7 +110,7 @@ export default () => {
               <NavItem title="Support" link={Routes.Presentation.path} icon={faUserShield} />
 
               <Dropdown.Divider className="my-3 border-indigo" />
-              <NavItem title="Logout" link={Routes.Presentation.path} icon={faSignOutAlt} />
+              <NavItem title="Logout" link={Routes.Presentation.path} icon={faSignOutAlt} onClick = {handleLogOut}/>
 
 
 
