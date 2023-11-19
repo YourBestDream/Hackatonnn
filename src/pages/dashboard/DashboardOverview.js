@@ -2,20 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine,faPlus, faUserShield} from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
-import { InfoCard, TeamMembersWidget, ProgressTrackWidget } from "../../components/Widgets";
+import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
 import ModalQuestions from "../../components/ModalQuestions";
 
 
 
 export default () => {
-  const [showModal, setShowModal] = useState(false);
-  const [selectedMeeting, setSelectedMeeting] = useState("");
-  const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
-  const handleSelectMeeting = (eventKey) => setSelectedMeeting(eventKey);
-
-  // Example meeting options
-  const meetingOptions = ["Meeting 1", "Meeting 2", "Meeting 3"];
   const generateQuestionCards = () => {
     const widgetData = [
       { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
@@ -83,24 +75,6 @@ const generateMeetingsCards = () => {
   };
   return (
       <>
-      <ModalQuestions 
-        showModal={showModal} 
-        handleCloseModal={handleCloseModal} 
-        selectedMeeting={selectedMeeting} 
-        handleSelectMeeting={handleSelectMeeting} 
-        meetingOptions={meetingOptions} 
-      />
-        <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-          <Dropdown className="btn-toolbar">
-            <Dropdown.Toggle as={Button} variant="primary" size="sm" className="me-2" onClick={handleShowModal}>
-              <FontAwesomeIcon icon={faPlus} className="me-2" />New Question
-            </Dropdown.Toggle>
-          </Dropdown>
-
-
-        </div>
-
-
         <Row className="justify-content-md-center">
 
           <p>

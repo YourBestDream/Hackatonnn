@@ -1,15 +1,17 @@
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faCog, faEnvelopeOpen, faSignOutAlt, faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faCog, faEnvelopeOpen, faSignOutAlt, faUserShield, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { Row, Col, Nav, Image, Navbar, Dropdown, Container, ListGroup } from '@themesberg/react-bootstrap';
+import { Row, Col, Nav, Image, Navbar, Dropdown, Container, ListGroup, Button } from '@themesberg/react-bootstrap';
 import NOTIFICATIONS_DATA from "../data/notifications";
 import Profile3 from "../assets/img/team/profile-picture-3.jpg";
 import {Routes} from "../routes";
 import {useHistory} from "react-router-dom";
 import {getEmail} from "../api"
 import {getRole} from "../api"
+import ModalQuestions from "./ModalQuestions";
+
 
 
 export default () => {
@@ -56,21 +58,31 @@ export default () => {
 
   }
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => setShowModal(true);
+
+
   const email = getEmail;
   const role = getRole;
 
   return (
+<>
+      <ModalQuestions
+          showModal={showModal}
+          setShowModal={setShowModal}
+      />
 
     <Navbar variant="dark" expanded className="ps-0 pe-2 pb-0">
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100 align-items-center">
           <>
           {role === "official" ? (
-              <Button variant="primary" size="sm" className="me-2">
+              <Button variant="primary" size="sm" className="me-2" >
                 <FontAwesomeIcon icon={faPlus} className="me-2" /> New Meeting
               </Button>
           ) : (
-              <Button variant="primary" size="sm" className="me-2">
+              <Button variant="primary" size="sm" className="me-2" onClick={handleShowModal}>
                 <FontAwesomeIcon icon={faPlus} className="me-2" /> New Question
               </Button>
               )}
@@ -135,5 +147,6 @@ export default () => {
         </div>
       </Container>
     </Navbar>
+</>
   );
 };
