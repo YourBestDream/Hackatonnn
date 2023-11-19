@@ -1,87 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { Table, Pagination } from '@themesberg/react-bootstrap';
+import { useMutation, useQuery } from "react-query";
+import { questions } from "../api";
 
-const VotingTable = () => {
-  const [data, setData] = useState([
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    { title: 'Proposal 1', createdBy: 'Alice', votes: 0 },
-    { title: 'Proposal 2', createdBy: 'Bob', votes: 0 },
-    
-    // ... add all other proposals ...
-  ]);
+const VotingTable = ({ meetingId }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  const incrementVote = (index) => {
-    const newData = [...data];
-    newData[index].votes += 1;
-    setData(newData);
+  // Fetch questions data
+  const { data: questionsData, refetch } = useQuery('questionsData', () => questions.getQuestions());
+
+  const voteMutation = useMutation((formData) => questions.voteQuestion(formData), {
+    onSuccess: () => {
+      refetch(); // Refetch questions data after a successful vote
+    },
+  });
+
+  const handleVoteQuestion = (questionId) => {
+    voteMutation.mutate({ questionId });
   };
 
+  // Pagination logic
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-  const currentItems = data.slice(firstIndex, lastIndex);
+  const currentItems = questionsData?.slice(firstIndex, lastIndex) || [];
+  const totalPages = Math.ceil(questionsData?.length || 0 / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  const totalPages = Math.ceil(data.length / itemsPerPage);
 
   return (
-    <>
-      <Table striped bordered hover>
-        {/* Table Head */}
-        <thead>
+      <>
+        <Table striped bordered hover>
+          <thead>
           <tr>
             <th>Title</th>
             <th>Created By</th>
             <th>Votes</th>
             <th>Action</th>
           </tr>
-        </thead>
-        {/* Table Body */}
-        <tbody>
+          </thead>
+          <tbody>
           {currentItems.map((item, index) => (
-            <tr key={index}>
-              <td>{item.title}</td>
-              <td>{item.createdBy}</td>
-              <td>{item.votes}</td>
-              <td>
-                <FontAwesomeIcon 
-                  icon={faArrowUp}
-                  onClick={() => incrementVote(firstIndex + index)} 
-                  style={{ color: item.votes > 0 ? 'green' : 'black', cursor: 'pointer' }}
-                />
-              </td>
-            </tr>
+              <tr key={index}>
+                <td>{item.questionTitle}</td>
+                <td>{item.email}</td>
+                <td>{item.voteCount}</td>
+                <td>
+                  <FontAwesomeIcon
+                      icon={faArrowUp}
+                      onClick={() => handleVoteQuestion(item.questionId)}
+                      style={{ color: item.votes > 0 ? 'green' : 'black', cursor: 'pointer' }}
+                  />
+                </td>
+              </tr>
           ))}
-        </tbody>
-      </Table>
-      <Pagination>
-        {[...Array(totalPages).keys()].map(number => (
-          <Pagination.Item 
-            key={number + 1} 
-            active={number + 1 === currentPage}
-            onClick={() => paginate(number + 1)}
-          >
-            {number + 1}
-          </Pagination.Item>
-        ))}
-      </Pagination>
-    </>
+          </tbody>
+        </Table>
+        <Pagination>
+          {totalPages > 0 && [...Array(totalPages).keys()].map(number => (
+              <Pagination.Item
+                  key={number + 1}
+                  active={number + 1 === currentPage}
+                  onClick={() => paginate(number + 1)}
+              >
+                {number + 1}
+              </Pagination.Item>
+          ))}
+        </Pagination>
+      </>
   );
 };
 

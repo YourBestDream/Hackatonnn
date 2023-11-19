@@ -54,6 +54,7 @@ export const InfoCard = (props) => {
     if (onClick) {
       onClick(id);
     }
+
   };
 
   return (

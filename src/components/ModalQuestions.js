@@ -40,7 +40,7 @@ import {useMutation, useQuery} from 'react-query';
 
   const [selectedMeeting, setSelectedMeeting] = useState("");
   const [description, setDescription] = useState("");
-  const meetingOptions = meetingsData ? meetingsData.map((meeting) => meeting.title) : [];
+  const meetingOptions = meetingsData ? meetingsData.map((meeting) => meeting.name+" "+meeting.surname) : [];
   const [title, setTitle] = useState("");
 
   console.log(">>>meeting", meetingsData)

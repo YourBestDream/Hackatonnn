@@ -31,9 +31,9 @@ export const questions = {
         }
     },
 
-    voteQuestion: async (questionId, userId) => {
+    voteQuestion: async (questionId) => {
         try {
-            const response = await questionsAxios.post(`/${questionId}/${userId}/vote`, {
+            const response = await questionsAxios.post(`/${questionId}/vote`, {
                 headers: {
                     ...questionsAxios.defaults.headers,
                     'Authorization': `Bearer ${ACCESS_TOKEN}`,
