@@ -3,12 +3,15 @@ import { Modal, Form, Button } from '@themesberg/react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { meetings } from '../api';
-import { useMutation } from 'react-query';
+import {useMutation} from 'react-query';
 import "../scss/datepicker.css";
 
 const ModalMeetings = ({ showModal, setShowModal }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [duration, setDuration] = useState("");
+
+
+
 
   const createMeetingMutation = useMutation((formData) => meetings.createMeeting(formData), {
     onSuccess: () => {

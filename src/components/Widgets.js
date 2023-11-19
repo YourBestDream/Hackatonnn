@@ -1,7 +1,7 @@
 
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faAngleUp, faChartLine, faFlagUsa, faFolderOpen, faGlobeEurope, faPaperclip, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp, faPaperclip, faComment } from '@fortawesome/free-solid-svg-icons';
 import { faAngular, faBootstrap, faReact, faVuejs } from "@fortawesome/free-brands-svg-icons";
 import { Col, Row, Card, Image, Button, ListGroup, ProgressBar } from '@themesberg/react-bootstrap';
 import {  SalesValueChart } from "./Charts";
@@ -47,16 +47,22 @@ export const ProfileCardWidget = ({email, phone, name, surname}) => {
 };
 
 export const InfoCard = (props) => {
-  const { icon, iconColor, name, period} = props;
+  const { name, period, id, onClick} = props;
 
+  const handleClick = () => {
+    // Call the onClick function passed as a prop
+    if (onClick) {
+      onClick(id);
+    }
+  };
 
   return (
     <Card border="light" className="shadow-sm">
       <Card.Body>
         <Row className="d-block d-xl-flex align-items-center">
           <Col xl={5} className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
-            <div className={`icon icon-shape icon-md icon-${iconColor} rounded me-4 me-sm-0`}>
-              <FontAwesomeIcon icon={icon} />
+            <div className={`icon icon-shape icon-md icon-shape-secondary rounded me-4 me-sm-0`}>
+              <FontAwesomeIcon icon={faComment} />
             </div>
           </Col>
           <Col xs={12} xl={7} className="px-xl-0">

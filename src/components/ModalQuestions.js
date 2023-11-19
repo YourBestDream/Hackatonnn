@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Modal, Form, Button } from '@themesberg/react-bootstrap';
 import {questions} from '../api'
-import {useMutation} from 'react-query';
+import {meetings} from '../api'
+import {useMutation, useQuery} from 'react-query';
 
 
 
-const ModalQuestions = ({ showModal,setShowModal }) => {
+
+  const ModalQuestions = ({ showModal, setShowModal }) => {
+
+    const { data: meetingsData } = useQuery([], () => meetings.listMeetings());
 
 
   const createQuestionMutation = useMutation((formData) => questions.createQuestion(formData), {
@@ -36,9 +40,10 @@ const ModalQuestions = ({ showModal,setShowModal }) => {
 
   const [selectedMeeting, setSelectedMeeting] = useState("");
   const [description, setDescription] = useState("");
-  const meetingOptions = ["Meeting 1", "Meeting 2", "Meeting 3"];
+  const meetingOptions = meetingsData ? meetingsData.map((meeting) => meeting.title) : [];
   const [title, setTitle] = useState("");
 
+  console.log(">>>meeting", meetingsData)
   const handleSelectMeeting = (eventKey) => setSelectedMeeting(eventKey);
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDescriptionChange = (e) => setDescription(e.target.value);

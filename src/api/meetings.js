@@ -41,7 +41,9 @@ export const meetings = {
 
     listMeetings: async () => {
         try {
-            const response = await meetingsAxios.get('', {
+            console.log(">>>access", `${ACCESS_TOKEN}`)
+
+            const response = await meetingsAxios.get('/all', {
                 headers: {
                     'Authorization': `Bearer ${ACCESS_TOKEN}`,
                 },
@@ -56,7 +58,6 @@ export const meetings = {
         try {
             const timezone = "Europe/Chisinau";
             const topic = "Team Sync";
-            console.log(">>>access", `${ACCESS_TOKEN}`)
             const response = await meetingsAxios.post('/create', { ...body, timezone, topic }, {
                 headers: {
                     'Authorization': `Bearer ${ACCESS_TOKEN}`,

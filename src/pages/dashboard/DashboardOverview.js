@@ -1,17 +1,25 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine,faPlus, faComment} from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
-import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
+import React from "react";
+import { faComment} from '@fortawesome/free-solid-svg-icons';
+import { Col, Row, Carousel} from '@themesberg/react-bootstrap';
+import { InfoCard } from "../../components/Widgets";
 import VotingTable from "../../components/VotingTable";
+import {useQuery} from "react-query";
+import {meetings} from "../../api";
 
 
 export default () => {
 const generateMeetingsCards = () => {
-    const widgetData = [
-      { name: 'Official Name', period: 'Your Time', icon: faComment, iconColor: 'shape-secondary' },
-      { name: 'Official Name', period: 'Your Time', icon: faComment, iconColor: 'shape-secondary' },
-    ];
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { data: meetingsData } = useQuery([], () => meetings.listMeetings());
+
+    const widgetData = meetingsData
+        ? meetingsData.map((meeting) => ({
+            name: meeting.title,
+            period: meeting.meetingDate,
+            id: meeting.meetingId
+        }))
+        : [];
 
     const groupedWidgets = [];
     const totalItems = widgetData.length;
@@ -27,7 +35,7 @@ const generateMeetingsCards = () => {
           <Row>
             {group.map((data, dataIndex) => (
                 <Col key={dataIndex} xs={12} sm={6} xl={4} className="mb-4">
-                  <InfoCard {...data} />
+                  <InfoCard {...data}  onClick={true} />
                 </Col>
             ))}
           </Row>
@@ -59,31 +67,6 @@ const generateMeetingsCards = () => {
           <VotingTable />
         </Col>
       </Row>
-        <Col xs={12} className="mb-4 d-none d-sm-block">
-          <SalesValueWidget
-              title="Sales Value"
-              value="10,567"
-              percentage={10.57}
-          />
-        </Col>
-
-        <Row>
-          <Col xs={12} xl={12} className="mb-4">
-            <Row>
-              <Row>
-                <Col xs={12} lg={6} className="mb-4">
-                  <TeamMembersWidget />
-                </Col>
-
-                <Col xs={12} lg={6} className="mb-4">
-                  <ProgressTrackWidget />
-                </Col>
-
-              </Row>
-
-            </Row>
-          </Col>
-        </Row>
       </>
   );
 };
