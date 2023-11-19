@@ -13,13 +13,18 @@ const questionsAxios = axios.create({
     baseURL: `${API_BASE_URL}/questions`,
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
     },
 });
 export const questions = {
     createQuestion: async (body) => {
         try {
-            const response = await questionsAxios.post('/', {...body});
+            const response = await questionsAxios.post('/', {...body}, {
+                headers: {
+                    ...questionsAxios.defaults.headers,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            });
+
             return response.data;
         } catch (error) {
             throw error;
@@ -28,7 +33,12 @@ export const questions = {
 
     voteQuestion: async (questionId, userId) => {
         try {
-            const response = await questionsAxios.post(`/${questionId}/${userId}/vote`);
+            const response = await questionsAxios.post(`/${questionId}/${userId}/vote`, {
+                headers: {
+                    ...questionsAxios.defaults.headers,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            })
             return response.data;
         } catch (error) {
             throw error;
@@ -37,7 +47,12 @@ export const questions = {
 
     listQuestions: async (meetingId) => {
         try {
-            const response = await questionsAxios.get(`/${meetingId}`);
+            const response = await questionsAxios.get(`/${meetingId}`, {
+                headers: {
+                    ...questionsAxios.defaults.headers,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            });
             return response.data;
         } catch (error) {
             throw error;
@@ -46,7 +61,12 @@ export const questions = {
 
     getQuestionDetails: async (questionId) => {
         try {
-            const response = await questionsAxios.get(`/${questionId}`);
+            const response = await questionsAxios.get(`/${questionId}`, {
+                headers: {
+                    ...questionsAxios.defaults.headers,
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            });
             return response.data;
         } catch (error) {
             throw error;

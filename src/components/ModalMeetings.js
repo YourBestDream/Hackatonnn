@@ -29,7 +29,7 @@ const ModalMeetings = ({ showModal, setShowModal }) => {
 
   createMeetingMutation.mutate({
     startTime: formattedDate,
-    duration
+    duration: parseInt(duration, 10)
   });
 
     handleCloseModal();

@@ -38,7 +38,7 @@ export const GeneralInfoForm = ({role}) => {
               </Form.Group>
             </Col>
             </Row>
-            {role === 'official' ? (
+            {role === 'OFFICIAL' ? (
                 <Col>
 
                 <Row>

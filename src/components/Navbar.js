@@ -65,8 +65,8 @@ export default () => {
   const [showModalMeeting, setShowModalMeeting] = useState(false);
   const handleShowModalMeeting = () => setShowModalMeeting(true);
 
-  const email = getEmail;
-  const role = "official";
+  const email = getEmail();
+  const role = getRole();
 
   return (
 <>
@@ -82,7 +82,7 @@ export default () => {
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100 align-items-center">
           <>
-          {role === "official" ? (
+          {role === "OFFICIAL" ? (
               <Button variant="primary" size="sm" className="me-2" onClick = {handleShowModalMeeting}>
                 <FontAwesomeIcon icon={faPlus} className="me-2"/> New Meeting
               </Button>

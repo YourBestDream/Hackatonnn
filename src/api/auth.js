@@ -32,6 +32,7 @@ export const auth = {
             const { email, jwt, role } = response.data;
             saveAccessToken(jwt);
             saveEmail(email);
+            saveRole(role);
             return response.data;
         } catch (error) {
             throw error;
@@ -47,6 +48,7 @@ export const auth = {
             const { email: responseDataEmail, jwt,role } = response.data;
             saveAccessToken(jwt);
             saveEmail(responseDataEmail);
+            saveRole(role);
             return response.data;
         } catch (error) {
             throw error;

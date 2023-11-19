@@ -10,7 +10,7 @@ const ACCESS_TOKEN = getAccessToken()
 
 
 const meetingsAxios = axios.create({
-    baseURL: `${API_BASE_URL}/meetings`,
+    baseURL: `${API_BASE_URL}/api/v1/meetings`,
     headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${ACCESS_TOKEN}`,
@@ -28,7 +28,11 @@ const officialsAxios = axios.create({
 export const meetings = {
     getMeetingDetails: async (meetingId) => {
         try {
-            const response = await meetingsAxios.get(`/${meetingId}`);
+            const response = await meetingsAxios.get(`/${meetingId}`, {
+                headers: {
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            });
             return response.data;
         } catch (error) {
             throw error;
@@ -37,7 +41,11 @@ export const meetings = {
 
     listMeetings: async () => {
         try {
-            const response = await meetingsAxios.get('');
+            const response = await meetingsAxios.get('', {
+                headers: {
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            });
             return response.data;
         } catch (error) {
             throw error;
@@ -48,7 +56,12 @@ export const meetings = {
         try {
             const timezone = "Europe/Chisinau";
             const topic = "Team Sync";
-            const response = await meetingsAxios.post('/create', { ...body, timezone, topic });
+            console.log(">>>access", `${ACCESS_TOKEN}`)
+            const response = await meetingsAxios.post('/create', { ...body, timezone, topic }, {
+                headers: {
+                    'Authorization': `Bearer ${ACCESS_TOKEN}`,
+                },
+            })
             return response.data;
         } catch (error) {
             throw error;
