@@ -25,12 +25,12 @@ const ModalMeetings = ({ showModal, setShowModal }) => {
   const handleCreateMeeting = (e) => {
     e.preventDefault();
 
-    const formattedDate = startDate.toISOString(); // Convert date to RFC3339 format
+  const formattedDate = startDate.toISOString(); // Convert date to RFC3339 format
 
-    createMeetingMutation.mutate({
-      start_date: formattedDate,
-      duration
-    });
+  createMeetingMutation.mutate({
+    startTime: formattedDate,
+    duration
+  });
 
     handleCloseModal();
   };
