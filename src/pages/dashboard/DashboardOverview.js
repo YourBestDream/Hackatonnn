@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faCloudUploadAlt, faPlus, faTasks, faUserShield } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
+import { Col, Row, Button, Dropdown, Carousel, Modal, Form, DropdownButton } from '@themesberg/react-bootstrap';
+import { InfoCard, TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget } from "../../components/Widgets";
 
-import { InfoCard,TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget} from "../../components/Widgets";
 
 export default () => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedMeeting, setSelectedMeeting] = useState("");
 
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+  const handleSelectMeeting = (eventKey) => setSelectedMeeting(eventKey);
+
+  // Example meeting options
+  const meetingOptions = ["Meeting 1", "Meeting 2", "Meeting 3"];
   const generateQuestionCards = () => {
     const widgetData = [
       { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
@@ -74,24 +82,53 @@ export default () => {
   };
   return (
       <>
+      <Modal show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+              <Modal.Title>New Question</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>
+                  <Form.Group className="mb-3">
+                      <Form.Label>Title</Form.Label>
+                      <Form.Control type="text" placeholder="Enter title" />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                      <Form.Label>Description</Form.Label>
+                      <Form.Control as="textarea" rows={3} placeholder="Enter the description of your problem"/>
+                  </Form.Group>
+                  {/* <DropdownButton 
+                    id="dropdown-meeting-select" 
+                    title={selectedMeeting || "Select a Meeting"}
+                    onSelect={handleSelectMeeting}>
+                      {meetingOptions.map((option, idx) => (
+                          <Dropdown.Item key={idx} eventKey={option}>{option}</Dropdown.Item>
+                      ))}
+                  </DropdownButton> */}
+                  <Form.Group className="mb-3">
+                <Form.Label>Select a Meeting</Form.Label>
+                <Form.Select
+                    value={selectedMeeting}
+                    onChange={(e) => handleSelectMeeting(e.target.value)}
+                >
+                    <option value="">Select a Meeting</option>
+                    {meetingOptions.map((option, idx) => (
+                        <option key={idx} value={option}>{option}</option>
+                    ))}
+                </Form.Select>
+            </Form.Group>
+              </Form>
+          </Modal.Body>
+          <Modal.Footer>
+              <Button variant="primary" onClick={handleCloseModal}>
+                  Send Question
+              </Button>
+          </Modal.Footer>
+      </Modal>
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
           <Dropdown className="btn-toolbar">
-            <Dropdown.Toggle as={Button} variant="primary" size="sm" className="me-2">
+            <Dropdown.Toggle as={Button} variant="primary" size="sm" className="me-2" onClick={handleShowModal}>
               <FontAwesomeIcon icon={faPlus} className="me-2" />New Question
             </Dropdown.Toggle>
-            <Dropdown.Menu className="dashboard-dropdown dropdown-menu-left mt-2">
-              <Dropdown.Item className="fw-bold">
-                <FontAwesomeIcon icon={faTasks} className="me-2" /> New Task
-              </Dropdown.Item>
-              <Dropdown.Item className="fw-bold">
-                <FontAwesomeIcon icon={faCloudUploadAlt} className="me-2" /> Upload Files
-              </Dropdown.Item>
-              <Dropdown.Item className="fw-bold">
-                <FontAwesomeIcon icon={faUserShield} className="me-2" /> Preview Security
-              </Dropdown.Item>
-
-              <Dropdown.Divider />
-            </Dropdown.Menu>
           </Dropdown>
 
 
