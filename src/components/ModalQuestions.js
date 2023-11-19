@@ -32,8 +32,8 @@ import {useMutation, useQuery} from 'react-query';
       e.preventDefault();
 
       const formData = {
-        title,
-        description,
+        questionTitle: title,
+        questionText: description,
       };
 
       createQuestionMutation.mutate(formData);
