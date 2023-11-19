@@ -5,8 +5,28 @@ import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap
 import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
 import VotingTable from "../../components/VotingTable";
 
+import { questions } from '../../api/questions';
+
 
 export default () => {
+
+    const [questionsData, setQuestionsData] = useState([]);
+  
+    useEffect(() => {
+      const fetchQuestions = async () => {
+        try {
+          // Replace 'meetingId' with the actual ID of the meeting you want to fetch questions for
+          const meetingId = 'your-meeting-id';
+          const data = await questions.listQuestions(meetingId);
+          setQuestionsData(data);
+        } catch (error) {
+          console.error("Error fetching questions:", error);
+        }
+      };
+  
+      fetchQuestions();
+    }, []);
+
   const generateQuestionCards = () => {
     const widgetData = [
       { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
@@ -94,7 +114,7 @@ const generateMeetingsCards = () => {
         </Row>
         <Row>
         <Col xs={12}>
-          <VotingTable />
+        <VotingTable data={questionsData} />
         </Col>
       </Row>
         <Col xs={12} className="mb-4 d-none d-sm-block">
