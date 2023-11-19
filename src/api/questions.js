@@ -2,22 +2,24 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080';
 
-const questionsAxios = axios.create({
-    baseURL: `${API_BASE_URL}/questions`,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
-
 
 const getAccessToken = () => {
     return localStorage.getItem('accessToken');
 };
+
+const ACCESS_TOKEN = getAccessToken()
+
+const questionsAxios = axios.create({
+    baseURL: `${API_BASE_URL}/questions`,
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+    },
+});
 export const questions = {
     createQuestion: async (body) => {
         try {
-            const jwt = getAccessToken()
-            const response = await questionsAxios.post('/', {...body,jwt});
+            const response = await questionsAxios.post('/', {...body});
             return response.data;
         } catch (error) {
             throw error;

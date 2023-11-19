@@ -2,10 +2,18 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080';
 
+const getAccessToken = () => {
+    return localStorage.getItem('accessToken');
+};
+
+const ACCESS_TOKEN = getAccessToken()
+
+
 const meetingsAxios = axios.create({
     baseURL: `${API_BASE_URL}/meetings`,
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
     },
 });
 
@@ -13,6 +21,7 @@ const officialsAxios = axios.create({
     baseURL: `${API_BASE_URL}/officials`,
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
     },
 });
 
@@ -37,7 +46,9 @@ export const meetings = {
 
     createMeeting: async (body) => {
         try {
-            const response = await meetingsAxios.post('/create', { ...body });
+            const timezone = "Europe/Chisinau";
+            const topic = "Team Sync";
+            const response = await meetingsAxios.post('/create', { ...body, timezone, topic });
             return response.data;
         } catch (error) {
             throw error;
