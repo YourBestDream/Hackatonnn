@@ -10,7 +10,7 @@ const getAccessToken = () => {
 const ACCESS_TOKEN = getAccessToken()
 
 const questionsAxios = axios.create({
-    baseURL: `${API_BASE_URL}/questions`,
+    baseURL: `${API_BASE_URL}/api/v1/questions`,
     headers: {
         'Content-Type': 'application/json',
     },
