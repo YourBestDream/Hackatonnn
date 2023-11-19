@@ -14,6 +14,7 @@
 // * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
 
 import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import ReactDOM from 'react-dom';
 import { HashRouter } from "react-router-dom";
 
@@ -23,13 +24,18 @@ import "./scss/volt.scss";
 // vendor styles
 import "react-datetime/css/react-datetime.css";
 
-import HomePage from "./pages/HomePage";
+
+import HomePage from "./pages/HomePage"
 import ScrollToTop from "./components/ScrollToTop";
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
-  <HashRouter>
-    <ScrollToTop />
-    <HomePage />
-  </HashRouter>,
-  document.getElementById("root")
+    <QueryClientProvider client={queryClient}>
+        <HashRouter>
+            <ScrollToTop />
+            <HomePage />
+        </HashRouter>
+    </QueryClientProvider>,
+    document.getElementById("root")
 );
