@@ -129,9 +129,6 @@ export default () => {
                   <ProgressTrackWidget />
                 </Col>
 
-                <Col xs={12} className="px-0 mb-4">
-                  <RankingWidget />
-                </Col>
               </Row>
 
             </Row>

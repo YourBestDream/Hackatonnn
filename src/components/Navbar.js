@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faCog, faEnvelopeOpen, faSignOutAlt, faUserShield, faPlus, faTasks, faCloudUploadAlt } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faCog, faEnvelopeOpen, faSignOutAlt, faUserShield, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Row, Col, Nav, Image, Navbar, Dropdown, Container, ListGroup, Button } from '@themesberg/react-bootstrap';
 
@@ -10,6 +10,8 @@ import Profile3 from "../assets/img/team/profile-picture-3.jpg";
 import {Routes} from "../routes";
 import {useHistory} from "react-router-dom";
 import {getEmail} from "../api"
+import {getRole} from "../api"
+
 
 export default () => {
   const [notifications, setNotifications] = useState(NOTIFICATIONS_DATA);
@@ -56,17 +58,24 @@ export default () => {
   }
 
   const email = getEmail;
+  const role = getRole;
 
   return (
-  <>
 
     <Navbar variant="dark" expanded className="ps-0 pe-2 pb-0">
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100 align-items-center">
-          <Button variant="primary" size="sm" className="me-2">
-            <FontAwesomeIcon icon={faPlus} className="me-2" />New Question
-          </Button>
-
+          <>
+          {role === "official" ? (
+              <Button variant="primary" size="sm" className="me-2">
+                <FontAwesomeIcon icon={faPlus} className="me-2" /> New Meeting
+              </Button>
+          ) : (
+              <Button variant="primary" size="sm" className="me-2">
+                <FontAwesomeIcon icon={faPlus} className="me-2" /> New Question
+              </Button>
+              )}
+          </>
           <div className="d-flex align-items-center">
             <Nav className="align-items-center">
 
@@ -121,11 +130,11 @@ export default () => {
                     <FontAwesomeIcon icon={faSignOutAlt} className="text-danger me-2" /> Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
-              </Dropdown>        </Nav>
+              </Dropdown>
+            </Nav>
           </div>
         </div>
       </Container>
     </Navbar>
-    </>
   );
 };
