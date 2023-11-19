@@ -10,6 +10,7 @@ import {useHistory} from "react-router-dom";
 import {getEmail} from "../api"
 import {getRole} from "../api"
 import ModalQuestions from "./ModalQuestions";
+import ModalMeetings from "./ModalMeetings";
 
 
 
@@ -61,9 +62,11 @@ export default () => {
 
   const handleShowModal = () => setShowModal(true);
 
+  const [showModalMeeting, setShowModalMeeting] = useState(false);
+  const handleShowModalMeeting = () => setShowModalMeeting(true);
 
   const email = getEmail;
-  const role = getRole;
+  const role = "official";
 
   return (
 <>
@@ -71,14 +74,17 @@ export default () => {
           showModal={showModal}
           setShowModal={setShowModal}
       />
-
+      <ModalMeetings
+        showModal={showModalMeeting}
+        setShowModal={setShowModalMeeting}
+      />
     <Navbar variant="dark" expanded className="ps-0 pe-2 pb-0">
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100 align-items-center">
           <>
           {role === "official" ? (
-              <Button variant="primary" size="sm" className="me-2" >
-                <FontAwesomeIcon icon={faPlus} className="me-2" /> New Meeting
+              <Button variant="primary" size="sm" className="me-2" onClick = {handleShowModalMeeting}>
+                <FontAwesomeIcon icon={faPlus} className="me-2"/> New Meeting
               </Button>
           ) : (
               <Button variant="primary" size="sm" className="me-2" onClick={handleShowModal}>
