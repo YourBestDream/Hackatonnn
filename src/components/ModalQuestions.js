@@ -31,7 +31,7 @@ import {useMutation, useQuery} from 'react-query';
     createQuestionMutation.mutate({
       title,
       description,
-      meetingdId: selectedMeeting.meetingdId
+      meetingId: selectedMeeting.meetingId
     });
 
     handleCloseModal()
