@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine,faPlus, faUserShield} from '@fortawesome/free-solid-svg-icons';
+import { faChartLine,faPlus} from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
 import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
 import ModalQuestions from "../../components/ModalQuestions";
