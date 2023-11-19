@@ -16,7 +16,7 @@ export default () => {
 
     // Fetch questions data
     const { data: questionsData, refetch } = useQuery('questionsData', () => questions.getQuestions( selectedMeetingId));
-
+    console.log(">>>>questionsssss", questionsData)
     const voteMutation = useMutation((formData) => questions.voteQuestion(formData), {
         onSuccess: () => {
             refetch(); // Refetch questions data after a successful vote
