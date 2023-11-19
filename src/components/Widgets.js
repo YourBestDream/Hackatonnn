@@ -47,37 +47,34 @@ export const ProfileCardWidget = ({email, phone, name, surname}) => {
 };
 
 export const InfoCard = (props) => {
-  const { name, period, id, onClick} = props;
+  const { name, period, id} = props;
 
   const handleClick = () => {
-    // Call the onClick function passed as a prop
-    if (onClick) {
-      onClick(id);
-    }
-
+      return id; // Call the onClick function with the id as an argument
   };
 
   return (
-    <Card border="light" className="shadow-sm">
-      <Card.Body>
-        <Row className="d-block d-xl-flex align-items-center">
-          <Col xl={5} className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
-            <div className={`icon icon-shape icon-md icon-shape-secondary rounded me-4 me-sm-0`}>
-              <FontAwesomeIcon icon={faComment} />
-            </div>
-          </Col>
-          <Col xs={12} xl={7} className="px-xl-0">
-            <div className="d-none d-sm-block">
-              <h5>Meeting with</h5>
-              <h3 className="mb-1">{name}</h3>
-            </div>
-            <small>Time: {period}</small>
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
+      <Card border="light" className="shadow-sm" onClick={handleClick}>
+        <Card.Body>
+          <Row className="d-block d-xl-flex align-items-center">
+            <Col xl={5} className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
+              <div className={`icon icon-shape icon-md icon-shape-secondary rounded me-4 me-sm-0`}>
+                <FontAwesomeIcon icon={faComment} />
+              </div>
+            </Col>
+            <Col xs={12} xl={7} className="px-xl-0">
+              <div className="d-none d-sm-block">
+                <h5>Meeting with</h5>
+                <h3 className="mb-1">{name}</h3>
+              </div>
+              <small>Time: {period}</small>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
   );
 };
+
 
 
 export const TeamMembersWidget = () => {

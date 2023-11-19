@@ -64,7 +64,7 @@ export default (props) => {
             <p className="mb-0 text-center text-xl-left">
               Copyright © 2019-{`${currentYear} `}
               <Card.Link href="https://themesberg.com" target="_blank" className="text-blue text-decoration-none fw-normal">
-                Themesberg
+                Bees
               </Card.Link>
             </p>
           </Col>

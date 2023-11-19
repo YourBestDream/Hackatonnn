@@ -27,7 +27,7 @@ export default () => {
     const groupedWidgets = [];
     const totalItems = widgetData.length;
 
-    const handleMeetingClick = (meetingId) => {
+    const onClickHandler = (meetingId) => {
         console.log('Meeting clicked with ID:', meetingId);
 
         setSelectedMeetingId(meetingId);
@@ -44,7 +44,7 @@ export default () => {
           <Row>
             {group.map((data, dataIndex) => (
                 <Col key={dataIndex} xs={12} sm={6} xl={4} className="mb-4">
-                  <InfoCard {...data} onClick={handleMeetingClick}/>
+                  <InfoCard {...data} onClick={() => onClickHandler(data.meetingId) }/>
                 </Col>
             ))}
           </Row>
