@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartLine,faPlus} from '@fortawesome/free-solid-svg-icons';
+import { faChartLine,faPlus, faComment} from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Button, Dropdown, Carousel} from '@themesberg/react-bootstrap';
 import { InfoCard, TeamMembersWidget, ProgressTrackWidget, SalesValueWidget } from "../../components/Widgets";
 import ModalQuestions from "../../components/ModalQuestions";
@@ -8,57 +8,19 @@ import ModalQuestions from "../../components/ModalQuestions";
 
 
 export default () => {
-  const generateQuestionCards = () => {
-    const widgetData = [
-      { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Custqrqeq', title: '349k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Customeqrweqeqeqs', title: '348k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Cers', title: '347k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Custoers', title: '346k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-    ];
-
-    const widgetsPerSlide = 3;
-    const groupedWidgets = [];
-    const totalItems = widgetData.length;
-
-    const duplicatedData = [...widgetData, ...widgetData.slice(0, widgetsPerSlide)];
-
-    for (let i = 0; i < totalItems; i += 1) {
-      groupedWidgets.push(duplicatedData.slice(i, i + widgetsPerSlide));
-    }
-
-    return groupedWidgets.map((group, index) => (
-        <Carousel.Item key={index}>
-          <Row>
-            {group.map((data, dataIndex) => (
-                <Col key={dataIndex} xs={12} sm={6} xl={4} className="mb-4">
-                  <InfoCard {...data} />
-                </Col>
-            ))}
-          </Row>
-        </Carousel.Item>
-    ));
-  };
-
 const generateMeetingsCards = () => {
     const widgetData = [
-      { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Customers', title: '345k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Custqrqeq', title: '349k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Customeqrweqeqeqs', title: '348k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Cers', title: '347k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
-      { category: 'Custoers', title: '346k', period: 'Feb 1 - Apr 1', percentage: 18.2, icon: faChartLine, iconColor: 'shape-secondary' },
+      { name: 'Official Name', period: 'Your Time', icon: faComment, iconColor: 'shape-secondary' },
+      { name: 'Official Name', period: 'Your Time', icon: faComment, iconColor: 'shape-secondary' },
     ];
 
-    const widgetsPerSlide = 3;
     const groupedWidgets = [];
     const totalItems = widgetData.length;
 
-    const duplicatedData = [...widgetData, ...widgetData.slice(0, widgetsPerSlide)];
+    const duplicatedData = [...widgetData, ...widgetData.slice(0, 3)];
 
     for (let i = 0; i < totalItems; i += 1) {
-      groupedWidgets.push(duplicatedData.slice(i, i + widgetsPerSlide));
+      groupedWidgets.push(duplicatedData.slice(i, i + 3));
     }
 
     return groupedWidgets.map((group, index) => (

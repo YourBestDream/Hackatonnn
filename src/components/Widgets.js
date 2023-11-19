@@ -47,9 +47,8 @@ export const ProfileCardWidget = ({email, phone, name, surname}) => {
 };
 
 export const InfoCard = (props) => {
-  const { icon, iconColor, category, title, period, percentage } = props;
-  const percentageIcon = percentage < 0 ? faAngleDown : faAngleUp;
-  const percentageColor = percentage < 0 ? "text-danger" : "text-success";
+  const { icon, iconColor, name, period} = props;
+
 
   return (
     <Card border="light" className="shadow-sm">
@@ -59,23 +58,13 @@ export const InfoCard = (props) => {
             <div className={`icon icon-shape icon-md icon-${iconColor} rounded me-4 me-sm-0`}>
               <FontAwesomeIcon icon={icon} />
             </div>
-            <div className="d-sm-none">
-              <h5>{category}</h5>
-              <h3 className="mb-1">{title}</h3>
-            </div>
           </Col>
           <Col xs={12} xl={7} className="px-xl-0">
             <div className="d-none d-sm-block">
-              <h5>{category}</h5>
-              <h3 className="mb-1">{title}</h3>
+              <h5>Meeting with</h5>
+              <h3 className="mb-1">{name}</h3>
             </div>
-            <small>{period}, <FontAwesomeIcon icon={faGlobeEurope} size="xs" /> WorldWide</small>
-            <div className="small mt-2">
-              <FontAwesomeIcon icon={percentageIcon} className={`${percentageColor} me-1`} />
-              <span className={`${percentageColor} fw-bold`}>
-                {percentage}%
-              </span> Since last month
-            </div>
+            <small>Time: {period}</small>
           </Col>
         </Row>
       </Card.Body>
@@ -175,51 +164,6 @@ export const ProgressTrackWidget = () => {
         <Progress title="Spaces - Listings Template" color="tertiary" icon={faVuejs} percentage={45} />
         <Progress title="Stellar - Dashboard" color="info" icon={faReact} percentage={35} />
         <Progress last title="Volt - Dashboard" color="purple" icon={faBootstrap} percentage={34} />
-      </Card.Body>
-    </Card>
-  );
-};
-
-export const RankingWidget = () => {
-  return (
-    <Card border="light" className="shadow-sm">
-      <Card.Body>
-        <div className="d-flex align-items-center justify-content-between border-bottom border-light pb-3">
-          <div>
-            <h6><FontAwesomeIcon icon={faGlobeEurope} className="icon icon-xs me-3" /> Global Rank</h6>
-          </div>
-          <div>
-            <Card.Link href="#" className="text-primary fw-bold">
-              #755 <FontAwesomeIcon icon={faChartLine} className="ms-2" />
-            </Card.Link>
-          </div>
-        </div>
-        <div className="d-flex align-items-center justify-content-between border-bottom border-light py-3">
-          <div>
-            <h6 className="mb-0"><FontAwesomeIcon icon={faFlagUsa} className="icon icon-xs me-3" />Country Rank</h6>
-            <div className="small card-stats">
-              United States <FontAwesomeIcon icon={faAngleUp} className="icon icon-xs text-success ms-2" />
-            </div>
-          </div>
-          <div>
-            <Card.Link href="#top" className="text-primary fw-bold">
-              #32 <FontAwesomeIcon icon={faChartLine} className="ms-2" />
-            </Card.Link>
-          </div>
-        </div>
-        <div className="d-flex align-items-center justify-content-between pt-3">
-          <div>
-            <h6 className="mb-0"><FontAwesomeIcon icon={faFolderOpen} className="icon icon-xs me-3" />Category Rank</h6>
-            <Card.Link href="#top" className="small card-stats">
-              Travel &gt; Accomodation
-            </Card.Link>
-          </div>
-          <div>
-            <Card.Link href="#top" className="text-primary fw-bold">
-              #16 <FontAwesomeIcon icon={faChartLine} className="ms-2" />
-            </Card.Link>
-          </div>
-        </div>
       </Card.Body>
     </Card>
   );
