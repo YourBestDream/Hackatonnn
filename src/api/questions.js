@@ -18,7 +18,7 @@ const questionsAxios = axios.create({
 export const questions = {
     createQuestion: async (body) => {
         try {
-            const response = await questionsAxios.post('/create', {...body}, {
+            const response = await questionsAxios.post('/create', {...body, meetingId:1}, {
                 headers: {
                     ...questionsAxios.defaults.headers,
                     'Authorization': `Bearer ${ACCESS_TOKEN}`,

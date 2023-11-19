@@ -12,37 +12,41 @@ import {useMutation, useQuery} from 'react-query';
     const { data: meetingsData } = useQuery([], () => meetings.listMeetings());
 
 
-  const createQuestionMutation = useMutation((formData) => questions.createQuestion(formData), {
-    onSuccess: () => {
-      handleCloseModal()
-    },
-  });
+    const createQuestionMutation = useMutation(
+        (formData) => questions.createQuestion(formData),
+        {
+          onSuccess: () => {
+            handleCloseModal();
+          },
+        }
+    );
 
-  const handleCloseModal = () => {
-    setSelectedMeeting("");
-    setTitle("");
-    setDescription("");
-    setShowModal(false);
-  };
+    const handleCloseModal = () => {
+      setSelectedMeeting("");
+      setTitle("");
+      setDescription("");
+      setShowModal(false);
+    };
 
-  const handleCreateQuestion = (e) => {
-    e.preventDefault();
+    const handleCreateQuestion = (e) => {
+      e.preventDefault();
 
-    createQuestionMutation.mutate({
-      title,
-      description,
-      meetingId: selectedMeeting.meetingId
-    });
+      const formData = {
+        title,
+        description,
+      };
 
-    handleCloseModal()
-  };
+      createQuestionMutation.mutate(formData);
 
+      handleCloseModal();
+    };
 
   const [selectedMeeting, setSelectedMeeting] = useState("");
   const [description, setDescription] = useState("");
   const meetingOptions = meetingsData ? meetingsData.map((meeting) => meeting.name+" "+meeting.surname) : [];
   const [title, setTitle] = useState("");
 
+  console.log(">>>meeting", meetingsData)
   console.log(">>>meeting", meetingsData)
   const handleSelectMeeting = (eventKey) => setSelectedMeeting(eventKey);
   const handleTitleChange = (e) => setTitle(e.target.value);

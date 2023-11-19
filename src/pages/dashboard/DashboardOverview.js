@@ -19,7 +19,7 @@ export default () => {
         ? meetingsData.map((meeting) => ({
             name: meeting.name+" "+meeting.surname,
             period: meeting.meetingDate,
-            id: meeting.meetingId
+            meetingId: meeting.meetingId
         }))
         : [];
 
