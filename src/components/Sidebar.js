@@ -9,7 +9,6 @@ import { Nav, Badge, Image, Button, Dropdown, Accordion, Navbar } from '@themesb
 import { Link } from 'react-router-dom';
 
 import { Routes } from "../routes";
-import ThemesbergLogo from "../assets/img/themesberg.svg";
 import ReactHero from "../assets/img/technologies/react-hero-logo.svg";
 import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 
@@ -21,32 +20,39 @@ export default () => {
 
   const onCollapse = () => setShow(!show);
 
-  const CollapsableNavItem = (props) => {
-    const { eventKey, title, icon, children = null } = props;
-    const defaultKey = pathname.indexOf(eventKey) !== -1 ? eventKey : "";
-
-    return (
-      <Accordion as={Nav.Item} defaultActiveKey={defaultKey}>
-        <Accordion.Item eventKey={eventKey}>
-          <Accordion.Button as={Nav.Link} className="d-flex justify-content-between align-items-center">
-            <span>
-              <span className="sidebar-icon"><FontAwesomeIcon icon={icon} /> </span>
-              <span className="sidebar-text">{title}</span>
-            </span>
-          </Accordion.Button>
-          <Accordion.Body className="multi-level">
-            <Nav className="flex-column">
-              {children}
-            </Nav>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
-    );
-  };
-
   const handleLogOut = () => {
     localStorage.clear();
   }
+
+  const NavLogo = ({ title, link, image }) => {
+    const navItemStyle = {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center', // Center vertically
+      textAlign: 'center',
+      padding: '15px',
+      background: `url(${image})`,
+      backgroundSize: 'cover',
+      color: 'white',
+      minHeight: '100px', // Adjust the height as needed
+    };
+
+    const logoStyle = {
+      width: '100%', // Adjust the width of the logo
+      height: '100%', // Maintain the aspect ratio
+      marginBottom: '10px', // Add some space below the logo
+    };
+
+    return (
+        <Nav.Item style={navItemStyle}>
+          <Nav.Link href={link}>
+            <img src={ReactHero} alt={title} style={logoStyle} />
+          </Nav.Link>
+        </Nav.Item>
+    );
+  };
+
 
   const NavItem = (props) => {
     const { title, link, external, target, icon, image, badgeText, badgeBg = "secondary", badgeColor = "primary" } = props;
@@ -101,7 +107,7 @@ export default () => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem title="Connect Moldova" link={Routes.Presentation.path} image={ReactHero} />
+              <NavLogo />
 
               <NavItem title="Meetings" link={Routes.DashboardOverview.path} icon={faChartPie} />
 
