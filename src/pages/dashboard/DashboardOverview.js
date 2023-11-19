@@ -15,7 +15,7 @@ export default () => {
     const itemsPerPage = 8;
 
     // Fetch questions data
-    const { data: questionsData, refetch } = useQuery('questionsData', () => questions.getQuestions( selectedMeetingId));
+    const { data: questionsData, refetch } = useQuery('questionsData', () => questions.listQuestions( selectedMeetingId));
     console.log(">>>>questionsssss", questionsData)
     const voteMutation = useMutation((formData) => questions.voteQuestion(formData), {
         onSuccess: () => {
