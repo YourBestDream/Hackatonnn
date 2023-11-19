@@ -9,6 +9,8 @@ import {Routes} from "../routes";
 import {useHistory} from "react-router-dom";
 import {getEmail} from "../api"
 import {getRole} from "../api"
+import ModalQuestions from "./ModalQuestions";
+
 
 
 export default () => {
@@ -55,21 +57,31 @@ export default () => {
 
   }
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => setShowModal(true);
+
+
   const email = getEmail;
   const role = getRole;
 
   return (
+<>
+      <ModalQuestions
+          showModal={showModal}
+          setShowModal={setShowModal}
+      />
 
     <Navbar variant="dark" expanded className="ps-0 pe-2 pb-0">
       <Container fluid className="px-0">
         <div className="d-flex justify-content-between w-100 align-items-center">
           <>
           {role === "official" ? (
-              <Button variant="primary" size="sm" className="me-2">
+              <Button variant="primary" size="sm" className="me-2" >
                 <FontAwesomeIcon icon={faPlus} className="me-2" /> New Meeting
               </Button>
           ) : (
-              <Button variant="primary" size="sm" className="me-2">
+              <Button variant="primary" size="sm" className="me-2" onClick={handleShowModal}>
                 <FontAwesomeIcon icon={faPlus} className="me-2" /> New Question
               </Button>
               )}
@@ -134,5 +146,6 @@ export default () => {
         </div>
       </Container>
     </Navbar>
+</>
   );
 };

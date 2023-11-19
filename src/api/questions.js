@@ -9,10 +9,15 @@ const questionsAxios = axios.create({
     },
 });
 
+
+const getAccessToken = () => {
+    return localStorage.getItem('accessToken');
+};
 export const questions = {
     createQuestion: async (body) => {
         try {
-            const response = await questionsAxios.post('/', {...body});
+            const jwt = getAccessToken()
+            const response = await questionsAxios.post('/', {...body,jwt});
             return response.data;
         } catch (error) {
             throw error;
