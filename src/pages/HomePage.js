@@ -72,13 +72,12 @@ const RouteWithSidebar = ({ component: Component, ...rest }) => {
 
 export default () => (
   <Switch>
-    <Redirect exact from="/" to={Routes.Signup.path} />
+    <Redirect exact from="/" to={"/"} />
     <RouteWithLoader exact path={Routes.Presentation.path} component={Presentation} />
     <RouteWithLoader exact path={Routes.Signin.path} component={Signin} />
     <RouteWithLoader exact path={Routes.Signup.path} component={Signup} />
     <RouteWithLoader exact path={Routes.ForgotPassword.path} component={ForgotPassword} />
     <RouteWithLoader exact path={Routes.ResetPassword.path} component={ResetPassword} />
-    <RouteWithLoader exact path={Routes.Lock.path} component={Lock} />
     <RouteWithLoader exact path={Routes.NotFound.path} component={NotFoundPage} />
     <RouteWithLoader exact path={Routes.ServerError.path} component={ServerError} />
 

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faCog, faEnvelopeOpen, faSignOutAlt, faUserShield, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCog, faEnvelopeOpen, faSignOutAlt, faUserShield, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
-import { Nav, Image, Navbar, Dropdown, Container, ListGroup, Button } from '@themesberg/react-bootstrap';
+import { Nav, Image, Navbar, Dropdown, Container, Button } from '@themesberg/react-bootstrap';
 import Profile3 from "../assets/img/team/profile-picture-3.jpg";
 import {Routes} from "../routes";
 import {useHistory} from "react-router-dom";
